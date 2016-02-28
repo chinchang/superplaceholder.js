@@ -1,0 +1,40 @@
+{
+  "name": "superplaceholder",
+  "title": "superplaceholder.js",
+  "description": "Super charge your input placeholders",
+  "version": "0.1.0",
+  "homepage": "http://kushagragour.in/lab/superplaceholderjs/",
+  "author": {
+    "name": "Kushagra Gour",
+    "email": "chinchang457@gmail.com",
+    "url": "http://kushagragour.in"
+  },
+  "main": "dist/superplaceholder.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/chinchang/superplaceholder.js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/chinchang/superplaceholder.js/issues"
+  },
+  "licenses": [
+    {
+      "type": "CC-BY-ND-4.0",
+      "url": "https://github.com/chinchang/superplaceholder.js/blob/master/LICENSE"
+    }
+  ],
+  "keywords": [
+    "placeholder",
+    "form",
+    "input",
+    "ux",
+    "javascript",
+    "library"
+  ],
+  "devDependencies": {
+    "grunt-contrib-concat": "~0.5.1",
+    "grunt": "~0.4.5",
+    "grunt-contrib-jshint": "^0.11.0",
+    "grunt-contrib-uglify": "~0.8.0"
+  }
+}

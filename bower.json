@@ -1,0 +1,17 @@
+{
+	"name": "superplaceholder",
+	"main": "dist/superplaceholder.js",
+	"author": "Kushagra Gour",
+	"ignore": [
+		"CONTRIBUTING.md",
+		"Gruntfile.js"
+	],
+	"keywords": [
+		"placeholder",
+		"form",
+		"input",
+		"ux",
+		"javascript",
+		"library"
+	]
+}
