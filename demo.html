@@ -36,9 +36,14 @@
 			margin: 3em auto;
 			border-bottom: 2px solid rgba(0,0,0,0.07);
 		}
+		.main-title-wrap {
+			margin: 3em 0 0;
+		}
 		.main-title {
 			font-size: 9vw;
-			margin: 0.5em 0 0;
+			margin: 0;
+			vertical-align: top;
+			display: inline-block;
 			color: white;
 		}
 		.main-sub-title {
@@ -95,6 +100,7 @@
 				padding: 0 5px;
 				font-size: 14px;
 			}
+			.main-title { display: block; }
 			input[type="text"],
 			input[type="password"] {
 				width: 100%;
@@ -111,7 +117,10 @@
 		</style>
 	</head>
 	<body>
-		<h1 class="main-title">superplaceholder.js</h1>
+		<div class="main-title-wrap">
+			<img width="65px" height="100px" src="assets/logo.png"/>
+			<h1 class="main-title">superplaceholder.js</h1>
+		</div>
 		<h2 class="main-sub-title">Super charge your placeholders</h2>
 		<a class="btn  download-btn" href="https://github.com/superplaceholder.js">Download <small><em style="text-transform:lowercase">(<1KB minified &amp; gzipped)</em></small></a>
 
