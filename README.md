@@ -1,3 +1,6 @@
+
+<img align="left" width="65px" height="100px" src="assets/logo.png"/>
+
 superplaceholder.js [![npm version](https://badge.fury.io/js/superplaceholder.svg)](http://badge.fury.io/js/superplaceholder)
 =====
 *Super charge your input placeholders*
