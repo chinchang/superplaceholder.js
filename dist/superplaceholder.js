@@ -1,4 +1,4 @@
-/*! superplaceholder.js - v0.1.0 - 2016-02-29
+/*! superplaceholder.js - v0.1.1 - 2016-03-06
 * http://kushagragour.in/lab/superplaceholderjs/
 * Copyright (c) 2016 Kushagra Gour; Licensed CC-BY-ND-4.0 */
 
@@ -19,7 +19,10 @@
 		letterDelay: 100, //milliseconds
 		sentenceDelay: 1000, //milliseconds
 		loop: false,
-		startOnFocus: true
+		startOnFocus: true,
+		shuffle: false,
+		showCursor: true,
+		cursor: '|'
 	};
 
 	// Constructor: PlaceHolder
@@ -33,8 +36,19 @@
 	}
 
 	PlaceHolder.prototype.begin = function() {
-		var self = this;
+		var self = this,
+			temp,
+			randomIndex;
 		self.originalPlaceholder = self.el.getAttribute('placeholder');
+		if (self.options.shuffle) {
+			for (var i = self.texts.length; i--;) {
+				randomIndex = ~~(Math.random() * i);
+				temp = self.texts[randomIndex];
+				self.texts[randomIndex] = self.texts[i];
+				self.texts[i] = temp;
+			}
+		}
+
 		if (self.options.startOnFocus) {
 			self.el.addEventListener('focus', function () {
 				self.processText(0);
@@ -65,7 +79,7 @@
 		function setTimeoutCallback(index) {
 			// Add cursor `|` after current substring unless we are showing last
 			// character of the string.
-			self.el.setAttribute('placeholder', str.substr(0, index + 1) + (index === str.length - 1 ? '' : '|'));
+			self.el.setAttribute('placeholder', str.substr(0, index + 1) + (index === str.length - 1 || !self.options.showCursor ? '' : self.options.cursor));
 			if (index === str.length - 1) {
 				callback();
 			}
