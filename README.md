@@ -61,7 +61,9 @@ superplaceholder({
 		// should start on input focus. Set false to autostart
 		startOnFocus: true,
 		// loop through passed sentences
-		loop: true
+		loop: true,
+		// Initially shuffle the passed sentences
+		shuffle: false
 	}
 };
 });

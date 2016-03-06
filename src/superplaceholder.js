@@ -15,7 +15,8 @@
 		letterDelay: 100, //milliseconds
 		sentenceDelay: 1000, //milliseconds
 		loop: false,
-		startOnFocus: true
+		startOnFocus: true,
+		shuffle: false
 	};
 
 	// Constructor: PlaceHolder
@@ -29,8 +30,19 @@
 	}
 
 	PlaceHolder.prototype.begin = function() {
-		var self = this;
+		var self = this,
+			temp,
+			randomIndex;
 		self.originalPlaceholder = self.el.getAttribute('placeholder');
+		if (self.options.shuffle) {
+			for (var i = self.texts.length; i--;) {
+				randomIndex = ~~(Math.random() * i);
+				temp = self.texts[randomIndex];
+				self.texts[randomIndex] = self.texts[i];
+				self.texts[i] = temp;
+			}
+		}
+
 		if (self.options.startOnFocus) {
 			self.el.addEventListener('focus', function () {
 				self.processText(0);
