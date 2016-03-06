@@ -16,7 +16,9 @@
 		sentenceDelay: 1000, //milliseconds
 		loop: false,
 		startOnFocus: true,
-		shuffle: false
+		shuffle: false,
+		showCursor: true,
+		cursor: '|'
 	};
 
 	// Constructor: PlaceHolder
@@ -73,7 +75,7 @@
 		function setTimeoutCallback(index) {
 			// Add cursor `|` after current substring unless we are showing last
 			// character of the string.
-			self.el.setAttribute('placeholder', str.substr(0, index + 1) + (index === str.length - 1 ? '' : '|'));
+			self.el.setAttribute('placeholder', str.substr(0, index + 1) + (index === str.length - 1 || !self.options.showCursor ? '' : self.options.cursor));
 			if (index === str.length - 1) {
 				callback();
 			}

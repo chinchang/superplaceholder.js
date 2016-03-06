@@ -63,7 +63,11 @@ superplaceholder({
 		// loop through passed sentences
 		loop: true,
 		// Initially shuffle the passed sentences
-		shuffle: false
+		shuffle: false,
+		// Show cursor or not. Shows by default
+		showCursor: true,
+		// String to show as cursor
+		cursor: '|'
 	}
 };
 });
