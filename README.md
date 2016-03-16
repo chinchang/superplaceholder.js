@@ -69,7 +69,6 @@ superplaceholder({
 		// String to show as cursor
 		cursor: '|'
 	}
-};
 });
 ```
 
