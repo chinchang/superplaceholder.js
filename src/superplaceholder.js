@@ -112,9 +112,7 @@
 	};
 
 	var superplaceholder = function (params) {
-		if (!isPlaceHolderSupported) {
-			return;
-		}
+		if (!isPlaceHolderSupported) { return; }
 
 		new PlaceHolder(params.el, params.sentences, params.options);
 	};
@@ -126,9 +124,7 @@
 	}
 	// AMD module
 	else if (typeof define === 'function' && define.amd) {
-		define(function () {
-			return superplaceholder;
-		});
+		define(function () { return superplaceholder; });
 	}
 	// Browser global
 	else {
