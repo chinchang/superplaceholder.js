@@ -72,6 +72,9 @@ superplaceholder({
 });
 ```
 
+### Using `data-placeholder` on each input
+Optionally you can pass the sentences on each input via the `data-placeholder='Something to show, Another thing to show'`  
+
 Browser Support
 -----
 
