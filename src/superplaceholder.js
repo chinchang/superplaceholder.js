@@ -37,7 +37,7 @@
 			temp,
 			randomIndex,
 			ele = self.el,
-			dataPlaceholder = el.getAttribute('data-placeholders');
+			dataPlaceholder = el.getAttribute('data-placeholder');
 		self.originalPlaceholder = el.getAttribute('placeholder');
 		self.texts = self.texts || dataPlaceholder ? dataPlaceholder.split() : [];
 		if (self.options.shuffle) {
@@ -61,7 +61,7 @@
 		}
 	};
 
-	PlaceHolder.prototype.cleanUp = function() {
+	PlaceHolder.prototype.cleanUp = function(){
 		// Stop timeouts
 		for (var i = this.timeouts.length; i--;) {
 			clearTimeout(this.timeouts[i]);
