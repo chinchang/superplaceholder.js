@@ -1,6 +1,7 @@
-;(function () {
+;
+(function() {
 	var test = document.createElement('input');
-    var isPlaceHolderSupported = ('placeholder' in test);
+	var isPlaceHolderSupported = ('placeholder' in test);
 
 	// Helpers
 	function extend(obj1, obj2) {
@@ -34,8 +35,11 @@
 	PlaceHolder.prototype.begin = function() {
 		var self = this,
 			temp,
-			randomIndex;
-		self.originalPlaceholder = self.el.getAttribute('placeholder');
+			randomIndex,
+			ele = self.el,
+			dataPlaceholder = el.getAttribute('data-placeholder');
+		self.originalPlaceholder = el.getAttribute('placeholder');
+		self.texts = self.texts || dataPlaceholder ? dataPlaceholder.split() : [];
 		if (self.options.shuffle) {
 			for (var i = self.texts.length; i--;) {
 				randomIndex = ~~(Math.random() * i);
@@ -46,19 +50,18 @@
 		}
 
 		if (self.options.startOnFocus) {
-			self.el.addEventListener('focus', function () {
+			el.addEventListener('focus', function() {
 				self.processText(0);
 			});
-			self.el.addEventListener('blur', function () {
+			el.addEventListener('blur', function() {
 				self.cleanUp();
 			});
-		}
-		else {
+		} else {
 			self.processText(0);
 		}
 	};
 
-	PlaceHolder.prototype.cleanUp = function () {
+	PlaceHolder.prototype.cleanUp = function(){
 		// Stop timeouts
 		for (var i = this.timeouts.length; i--;) {
 			clearTimeout(this.timeouts[i]);
@@ -67,11 +70,14 @@
 		this.timeouts.length = 0;
 	};
 
-	PlaceHolder.prototype.typeString = function (str, callback) {
+	PlaceHolder.prototype.typeString = function(str, callback) {
 		var self = this,
 			timeout;
 
-		if (!str) { return false; }
+		if (!str) {
+			return false;
+		}
+
 		function setTimeoutCallback(index) {
 			// Add cursor `|` after current substring unless we are showing last
 			// character of the string.
@@ -90,27 +96,29 @@
 		var self = this,
 			timeout;
 
-		self.typeString(self.texts[index], function () {
-			timeout = setTimeout(function () {
+		self.typeString(self.texts[index], function() {
+			timeout = setTimeout(function() {
 				self.processText(self.options.loop ? ((index + 1) % self.texts.length) : (index + 1));
 			}, self.options.sentenceDelay);
 			self.timeouts.push(timeout);
 		});
 	};
 
-	var superplaceholder = function (params) {
-		if (!isPlaceHolderSupported) { return; }
+	var superplaceholder = function(params) {
+		if (!isPlaceHolderSupported) {
+			return;
+		}
 		new PlaceHolder(params.el, params.sentences, params.options);
 	};
 
 	// open to the world.
 	// commonjs
-	if( typeof exports === 'object' )  {
+	if (typeof exports === 'object') {
 		module.exports = superplaceholder;
 	}
 	// AMD module
-	else if( typeof define === 'function' && define.amd ) {
-		define(function () {
+	else if (typeof define === 'function' && define.amd) {
+		define(function() {
 			return superplaceholder;
 		});
 	}
