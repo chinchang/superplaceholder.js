@@ -23,6 +23,13 @@ Installation
 
 **Note**: **superplaceholder.js** supports AMD and commonJS module pattern out of the box.
 
+Features
+-----
+
+*	tiny size
+*	mobile supported
+*	easy to use
+
 Usage
 -----
 
