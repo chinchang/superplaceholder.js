@@ -20,17 +20,11 @@
   "licenses": [
     {
       "type": "CC-BY-ND-4.0",
-      "url": "https://github.com/chinchang/superplaceholder.js/blob/master/LICENSE"
+      "url":
+        "https://github.com/chinchang/superplaceholder.js/blob/master/LICENSE"
     }
   ],
-  "keywords": [
-    "placeholder",
-    "form",
-    "input",
-    "ux",
-    "javascript",
-    "library"
-  ],
+  "keywords": ["placeholder", "form", "input", "ux", "javascript", "library"],
   "devDependencies": {
     "grunt-contrib-concat": "~0.5.1",
     "grunt": "~0.4.5",
