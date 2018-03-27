@@ -2,7 +2,7 @@
   "name": "superplaceholder",
   "title": "superplaceholder.js",
   "description": "Super charge your input placeholders",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "homepage": "http://kushagragour.in/lab/superplaceholderjs/",
   "author": {
     "name": "Kushagra Gour",
@@ -20,11 +20,17 @@
   "licenses": [
     {
       "type": "CC-BY-ND-4.0",
-      "url":
-        "https://github.com/chinchang/superplaceholder.js/blob/master/LICENSE"
+      "url": "https://github.com/chinchang/superplaceholder.js/blob/master/LICENSE"
     }
   ],
-  "keywords": ["placeholder", "form", "input", "ux", "javascript", "library"],
+  "keywords": [
+    "placeholder",
+    "form",
+    "input",
+    "ux",
+    "javascript",
+    "library"
+  ],
   "devDependencies": {
     "grunt-contrib-concat": "~0.5.1",
     "grunt": "~0.4.5",
