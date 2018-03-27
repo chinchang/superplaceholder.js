@@ -62,7 +62,12 @@
     for (var i = this.timeouts.length; i--; ) {
       clearTimeout(this.timeouts[i]);
     }
-    this.el.setAttribute('placeholder', this.originalPlaceholder);
+    // null means there was no placeholder attribute initially.
+    if (this.originalPlaceholder === null) {
+      this.el.removeAttribute('placeholder');
+    } else {
+      this.el.setAttribute('placeholder', this.originalPlaceholder);
+    }
     this.timeouts.length = 0;
   };
 
