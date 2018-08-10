@@ -1,4 +1,4 @@
-(function() {
+(function () {
   var test = document.createElement('input');
   var isPlaceHolderSupported = 'placeholder' in test;
 
@@ -31,13 +31,13 @@
     this.begin();
   }
 
-  PlaceHolder.prototype.begin = function() {
+  PlaceHolder.prototype.begin = function () {
     var self = this,
       temp,
       randomIndex;
     self.originalPlaceholder = self.el.getAttribute('placeholder');
     if (self.options.shuffle) {
-      for (var i = self.texts.length; i--; ) {
+      for (var i = self.texts.length; i--;) {
         randomIndex = ~~(Math.random() * i);
         temp = self.texts[randomIndex];
         self.texts[randomIndex] = self.texts[i];
@@ -46,10 +46,10 @@
     }
 
     if (self.options.startOnFocus) {
-      self.el.addEventListener('focus', function() {
+      self.el.addEventListener('focus', function () {
         self.processText(0);
       });
-      self.el.addEventListener('blur', function() {
+      self.el.addEventListener('blur', function () {
         self.cleanUp();
       });
     } else {
@@ -57,9 +57,9 @@
     }
   };
 
-  PlaceHolder.prototype.cleanUp = function() {
+  PlaceHolder.prototype.cleanUp = function () {
     // Stop timeouts
-    for (var i = this.timeouts.length; i--; ) {
+    for (var i = this.timeouts.length; i--;) {
       clearTimeout(this.timeouts[i]);
     }
     // null means there was no placeholder attribute initially.
@@ -71,22 +71,23 @@
     this.timeouts.length = 0;
   };
 
-  PlaceHolder.prototype.typeString = function(str, callback) {
+  PlaceHolder.prototype.typeString = function (str, callback) {
     var self = this,
       timeout;
 
     if (!str) {
       return false;
     }
+
     function setTimeoutCallback(index) {
       // Add cursor `|` after current substring unless we are showing last
       // character of the string.
       self.el.setAttribute(
         'placeholder',
         str.substr(0, index + 1) +
-          (index === str.length - 1 || !self.options.showCursor
-            ? ''
-            : self.options.cursor)
+        (index === str.length - 1 || !self.options.showCursor ?
+          '' :
+          self.options.cursor)
       );
       if (index === str.length - 1) {
         callback();
@@ -98,12 +99,12 @@
     }
   };
 
-  PlaceHolder.prototype.processText = function(index) {
+  PlaceHolder.prototype.processText = function (index) {
     var self = this,
       timeout;
 
-    self.typeString(self.texts[index], function() {
-      timeout = setTimeout(function() {
+    self.typeString(self.texts[index], function () {
+      timeout = setTimeout(function () {
         self.processText(
           self.options.loop ? (index + 1) % self.texts.length : index + 1
         );
@@ -112,7 +113,7 @@
     });
   };
 
-  var superplaceholder = function(params) {
+  var superplaceholder = function (params) {
     if (!isPlaceHolderSupported) {
       return;
     }
@@ -125,7 +126,7 @@
     module.exports = superplaceholder;
   } else if (typeof define === 'function' && define.amd) {
     // AMD module
-    define(function() {
+    define(function () {
       return superplaceholder;
     });
   } else {
