@@ -16,7 +16,8 @@ module.exports = function(grunt) {
       files: ['Gruntfile.js', 'src/<%= pkg.name %>.js'],
       options: {
         browser: true,
-        devel: true
+        devel: true,
+        laxbreak: true
       }
     },
     uglify: {
