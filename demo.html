@@ -156,7 +156,7 @@
 		</footer>
 		<script src="src/superplaceholder.js"></script>
 		<script>
-		superplaceholder({
+		superplaceholder.new({
 			el: inp1,
 			sentences: [ 'Only company emails', 'kushagra@wingify.com', 'adam@google.com' ],
 			options: {
@@ -164,7 +164,7 @@
 			}
 		})
 
-		superplaceholder({
+		superplaceholder.new({
 			el: inp2,
 			sentences: [ '1 special character', '1 uppercase alphabet', 'Eg. hjhhjAsasd*' ],
 			options: {
@@ -173,13 +173,13 @@
 			}
 		})
 
-		superplaceholder({
+		superplaceholder.new({
 			el: inp3,
 			sentences: [ 'Any format works', 'http://yahoo.com', 'www.facebook.com', 'airbnb.com' ],
 			options: {
 				letterDelay: 80,
 				loop: true,
-				startOnFocus: false
+				onFocusBehavior: superplaceholder.FocusBehavior.DO_NOTHING
 			}
 		})
 		</script>
