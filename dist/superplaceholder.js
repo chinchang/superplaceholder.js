@@ -1,6 +1,6 @@
-/*! superplaceholder.js - v0.1.2 - 2018-03-28
+/*! superplaceholder.js - v1.0.0 - 2019-01-04
 * http://kushagragour.in/lab/superplaceholderjs/
-* Copyright (c) 2018 Kushagra Gour; Licensed CC-BY-ND-4.0 */
+* Copyright (c) 2019 Kushagra Gour; Licensed CC-BY-ND-4.0 */
 
 (function() {
   var test = document.createElement('input');
@@ -15,6 +15,12 @@
     return obj;
   }
 
+  var Actions = Object.freeze({
+    START: 'start',
+    STOP: 'stop',
+    NOTHING: false
+  });
+
   var defaults = {
     letterDelay: 100, //milliseconds
     sentenceDelay: 1000, //milliseconds
@@ -22,7 +28,10 @@
     startOnFocus: true,
     shuffle: false,
     showCursor: true,
-    cursor: '|'
+    cursor: '|',
+    autoStart: false,
+    onFocusAction: Actions.START,
+    onBlurAction: Actions.STOP
   };
 
   // Constructor: PlaceHolder
@@ -31,33 +40,70 @@
     this.texts = texts;
     options = options || {};
     this.options = extend(defaults, options);
+    // Translate deprecated `startOnFocus` option to new ones.
+    if (!this.options.startOnFocus) {
+      // TODO: add deprecation message
+      console.warn(
+        'Superplaceholder.js: `startOnFocus` option has been deprecated. Please use `onFocusAction`, `onBlurAction` and `autoStart`'
+      );
+
+      this.options.autoStart = true;
+      this.options.onFocusAction = Actions.NOTHING;
+      this.options.onBlurAction = Actions.NOTHING;
+    }
     this.timeouts = [];
+    this.isPlaying = false;
+
+    var temp, randomIndex;
+    if (this.options.shuffle) {
+      for (var i = this.texts.length; i--; ) {
+        randomIndex = ~~(Math.random() * i);
+        temp = this.texts[randomIndex];
+        this.texts[randomIndex] = this.texts[i];
+        this.texts[i] = temp;
+      }
+    }
+
     this.begin();
   }
 
   PlaceHolder.prototype.begin = function() {
-    var self = this,
-      temp,
-      randomIndex;
+    var self = this;
     self.originalPlaceholder = self.el.getAttribute('placeholder');
-    if (self.options.shuffle) {
-      for (var i = self.texts.length; i--; ) {
-        randomIndex = ~~(Math.random() * i);
-        temp = self.texts[randomIndex];
-        self.texts[randomIndex] = self.texts[i];
-        self.texts[i] = temp;
-      }
-    }
 
-    if (self.options.startOnFocus) {
-      self.el.addEventListener('focus', function() {
-        self.processText(0);
-      });
-      self.el.addEventListener('blur', function() {
-        self.cleanUp();
-      });
-    } else {
+    if (self.options.onFocusAction || self.options.onBlurAction) {
+      // Store to unbind later
+      self.listeners = {
+        focus: self.onFocus.bind(self),
+        blur: self.onBlur.bind(self)
+      };
+      self.el.addEventListener('focus', self.listeners.focus);
+      self.el.addEventListener('blur', self.listeners.blur);
+    }
+    if (self.options.autoStart) {
       self.processText(0);
+    }
+  };
+
+  PlaceHolder.prototype.onFocus = function() {
+    if (this.options.onFocusAction === Actions.START) {
+      if (this.isInProgress()) {
+        return;
+      }
+      this.processText(0);
+    } else if (this.options.onFocusAction === Actions.STOP) {
+      this.cleanUp();
+    }
+  };
+
+  PlaceHolder.prototype.onBlur = function() {
+    if (this.options.onBlurAction === Actions.STOP) {
+      this.cleanUp();
+    } else if (this.options.onBlurAction === Actions.START) {
+      if (this.isInProgress()) {
+        return;
+      }
+      this.processText(0);
     }
   };
 
@@ -73,6 +119,11 @@
       this.el.setAttribute('placeholder', this.originalPlaceholder);
     }
     this.timeouts.length = 0;
+    this.isPlaying = false;
+  };
+
+  PlaceHolder.prototype.isInProgress = function() {
+    return this.isPlaying;
   };
 
   PlaceHolder.prototype.typeString = function(str, callback) {
@@ -82,6 +133,7 @@
     if (!str) {
       return false;
     }
+
     function setTimeoutCallback(index) {
       // Add cursor `|` after current substring unless we are showing last
       // character of the string.
@@ -92,6 +144,7 @@
             ? ''
             : self.options.cursor)
       );
+      // Call the completion callback when last character is being printed
       if (index === str.length - 1) {
         callback();
       }
@@ -106,7 +159,14 @@
     var self = this,
       timeout;
 
+    this.isPlaying = true;
+
     self.typeString(self.texts[index], function() {
+      // Empty the timeouts array
+      self.timeouts.length = 0;
+      if (!self.options.loop && !self.texts[index + 1]) {
+        self.isPlaying = false;
+      }
       timeout = setTimeout(function() {
         self.processText(
           self.options.loop ? (index + 1) % self.texts.length : index + 1
@@ -120,8 +180,30 @@
     if (!isPlaceHolderSupported) {
       return;
     }
-    new PlaceHolder(params.el, params.sentences, params.options);
+    var instance = new PlaceHolder(params.el, params.sentences, params.options);
+    return {
+      start: function() {
+        if (instance.isInProgress()) {
+          return;
+        }
+        instance.processText(0);
+      },
+      stop: function() {
+        instance.cleanUp();
+      },
+      destroy: function() {
+        instance.cleanUp();
+        for (var eventName in instance.listeners) {
+          instance.el.removeEventListener(
+            eventName,
+            instance.listeners[eventName]
+          );
+        }
+      }
+    };
   };
+
+  superplaceholder.Actions = Actions;
 
   // open to the world.
   // commonjs
