@@ -1,24 +1,26 @@
 <!doctype html>
 <html class="no-js" lang="">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>superplaceholder.js - Super charge your input placeholders</title>
-		<meta name="author" content="Kushagra Gour">
-		<meta name="description" content="Super charge your input placeholders">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="image_src" href="/assets/superplaceholder.png"/>
 
-		<link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
-		<style>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>superplaceholder.js - Super charge your input placeholders</title>
+	<meta name="author" content="Kushagra Gour">
+	<meta name="description" content="Super charge your input placeholders">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="image_src" href="/assets/superplaceholder.png" />
+
+	<style>
 		* {
 			box-sizing: border-box;
 		}
 		html, body {
-			font-family: 'Roboto', sans-serif;
+			font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
 			background: #9ACD32;
 			background: yellowgreen;
-			color: rgba(0,0,0,0.5);
+			color: rgba(0, 0, 0, 0.67);
 			text-align: center;
 			margin: 0;
 		}
@@ -26,7 +28,7 @@
 		h2 {
 			font-size: 40px;
 		}
-		a { color: rgba(255,255,255,0.7); }
+		a { color: #252525; }
 		a:hover { text-decoration: none; }
 		h3 {
 			text-transform: uppercase;
@@ -56,7 +58,7 @@
 			text-decoration: none;
 			padding: 0.7em 2em;
 			background: white;
-			color: #9ACD32;
+			color: #59771d;
 			border: 0;
 			/*border-bottom: 6px solid rgba(0, 0, 0, 0.3);*/
 			border-radius: 6px;
@@ -115,74 +117,76 @@
 			}
 		}
 		</style>
-	</head>
-	<body>
-		<div class="main-title-wrap">
-			<img width="65px" height="100px" src="assets/logo.png"/>
-			<h1 class="main-title">superplaceholder.js</h1>
-		</div>
-		<h2 class="main-sub-title">Super charge your placeholders</h2>
-		<a class="btn  download-btn" href="https://github.com/superplaceholder.js">Download <small><em style="text-transform:lowercase">(<1KB minified &amp; gzipped)</em></small></a>
+</head>
 
-		<h3>URL Inputs</h3>
-		<div class="row">
-			<label>Enter a URL:</label>
-			<input id="inp3" type="text" value="" placeholder="Url">
-		</div>
+<body>
+	<div class="main-title-wrap">
+		<img width="65px" height="100px" src="assets/logo.png" />
+		<h1 class="main-title">superplaceholder.js</h1>
+	</div>
+	<h2 class="main-sub-title">Super charge your placeholders</h2>
+	<a class="btn  download-btn" href="https://github.com/superplaceholder.js">Download <small><em style="text-transform:lowercase">(<1KB
+				 minified &amp; gzipped)</em> </small> </a> <h3>URL Inputs</h3>
+					<div class="row">
+						<label>Enter a URL:</label>
+						<input id="inp3" type="text" value="" placeholder="Url">
+					</div>
 
-		<h3>Signup forms</h3>
-		<div class="row">
-			<input id="inp1" type="text" value="" placeholder="Email">
-		</div>
-		<div class="row">
-			<input id="inp2" type="password" value="" placeholder="Password">
-		</div>
+					<h3>Signup forms</h3>
+					<div class="row">
+						<input id="inp1" type="text" value="" placeholder="Email">
+					</div>
+					<div class="row">
+						<input id="inp2" type="password" value="" placeholder="Password">
+					</div>
 
-		<footer>
-			<div style="position:fied;z-index:2;right: 20px;margin-bottom: 10px;">
-				 <a title="Source on github" href="https://github.com/chinchang/superplaceholder.js" class="footer-link">
-					<svg viewBox="0 0 16 16" width="48" height="48">
-						<path fill="rgba(0,0,0,0.2)" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
-					</svg>
-				</a>
-				<a title="Tweet" href="http://twitter.com/share?url=http://kushagragour.in/lab/superplaceholderjs&text=superplaceholder.js - Super charge your input placeholders&count=horiztonal&related=chinchang457&hashtags=javascript,ux" target="_blank" class="footer-link">
-					 <svg viewBox="0 0 16 16" width="48" height="48">
-		              <path fill="rgba(0,0,0,0.2)" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809
-		              c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/>
-		            </svg>
-				</a>
-			</div>
-			Made with hands by <a href="https://twitter.com/chinchang457">Kushagra Gour</a> in India
-		</footer>
-		<script src="src/superplaceholder.js"></script>
-		<script>
-		superplaceholder({
-			el: inp1,
-			sentences: [ 'Only company emails', 'kushagra@wingify.com', 'adam@google.com' ],
-			options: {
-				loop: true
-			}
-		})
+					<footer>
+						<div style="position:fied;z-index:2;right: 20px;margin-bottom: 10px;">
+							<a title="Source on github" href="https://github.com/chinchang/superplaceholder.js" class="footer-link">
+								<svg viewBox="0 0 16 16" width="48" height="48">
+									<path fill="rgba(0,0,0,0.2)" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z" />
+								</svg>
+							</a>
+							<a title="Tweet" href="http://twitter.com/share?url=http://kushagragour.in/lab/superplaceholderjs&text=superplaceholder.js - Super charge your input placeholders&count=horiztonal&related=chinchang457&hashtags=javascript,ux"
+							 target="_blank" class="footer-link">
+								<svg viewBox="0 0 16 16" width="48" height="48">
+									<path fill="rgba(0,0,0,0.2)" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809
+		              c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z" />
+								</svg>
+							</a>
+						</div>
+						Made with hands by <a href="https://twitter.com/chinchang457">Kushagra Gour</a> in India
+					</footer>
+					<script src="src/superplaceholder.js"></script>
+					<script>
+						superplaceholder({
+							el: inp1,
+							sentences: ['Only company emails', 'kushagra@wingify.com', 'adam@google.com'],
+							options: {
+								loop: true
+							}
+						})
 
-		superplaceholder({
-			el: inp2,
-			sentences: [ '1 special character', '1 uppercase alphabet', 'Eg. hjhhjAsasd*' ],
-			options: {
-				loop: true,
-				letterDelay: 30
-			}
-		})
+						superplaceholder({
+							el: inp2,
+							sentences: ['1 special character', '1 uppercase alphabet', 'Eg. hjhhjAsasd*'],
+							options: {
+								loop: true,
+								letterDelay: 30
+							}
+						})
 
-		superplaceholder({
-			el: inp3,
-			sentences: [ 'Any format works', 'http://yahoo.com', 'www.facebook.com', 'airbnb.com' ],
-			options: {
-				letterDelay: 80,
-				loop: true,
-				startOnFocus: false
-			}
-		})
-		</script>
+						superplaceholder({
+							el: inp3,
+							sentences: ['Any format works', 'http://yahoo.com', 'www.facebook.com', 'airbnb.com'],
+							options: {
+								letterDelay: 80,
+								loop: true,
+								startOnFocus: false
+							}
+						})
+					</script>
 
-	</body>
+</body>
+
 </html>
