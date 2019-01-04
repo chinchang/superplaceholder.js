@@ -17,8 +17,9 @@ Installation
 
 **superplaceholder.js** is *less than 1KB* minified & gzipped.
 
-- Bower: `bower install superplaceholder`
-- NPM: `npm install superplaceholder`
+- **NPM**: `npm install superplaceholder`
+- **Yarn**: `yarn add superplacholder`
+- **Bower**: `bower install superplaceholder`
 - [Download zip](https://github.com/chinchang/superplaceholder.js/archive/master.zip).
 
 **Note**: **superplaceholder.js** supports AMD and commonJS module pattern out of the box.
@@ -59,7 +60,7 @@ superplaceholder({
 		// delay between sentences (in milliseconds)
 		sentenceDelay: 1000,
 		// should start on input focus. Set false to autostart
-		startOnFocus: true,
+		startOnFocus: true, // [DEPRECATED]
 		// loop through passed sentences
 		loop: false,
 		// Initially shuffle the passed sentences
@@ -67,9 +68,32 @@ superplaceholder({
 		// Show cursor or not. Shows by default
 		showCursor: true,
 		// String to show as cursor
-		cursor: '|'
+		cursor: '|',
+		// Control onFocus behaviour. Default is `superplaceholder.Actions.START`
+		onFocusAction: superplaceholder.Actions.[NOTHING|START|STOP]
+		// Control onBlur behaviour. Default is `superplaceholder.Actions.STOP`
+ 		onBlurAction: superplaceholder.Actions.[NOTHING|START|STOP]
 	}
 });
+```
+
+Manually Controlling a superplaceholder instance:
+
+```js
+// Complete manual control
+const instance = superplaceholder({
+ el: document.querySelector('input'),
+ sentences: [ 'Any format works', 'http://yahoo.com', 'www.facebook.com', 'airbnb.com' ],
+ options: {
+  onFocusAction: superplaceholder.Actions.NOTHING
+  onBlurAction: superplaceholder.Actions.NOTHING
+ }
+});
+
+// Later, whenever you want
+instance.start();
+instance.stop();
+instance.destroy(); // to completely remove superplaceholder from an input
 ```
 
 Browser Support
@@ -94,5 +118,5 @@ See the [Changelog](https://github.com/chinchang/superplaceholder.js/wiki/Change
 License
 -----
 
-Copyright (c) 2018 Kushagra Gour, http://kushagragour.in
+Copyright (c) 2019 Kushagra Gour, https://kushagragour.in
 This work is licensed under a [Creative Commons Attribution-NoDerivatives 4.0 International License](http://creativecommons.org/licenses/by-nd/4.0/).
