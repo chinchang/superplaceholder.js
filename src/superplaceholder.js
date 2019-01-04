@@ -189,7 +189,7 @@
       },
       destroy: function() {
         instance.cleanUp();
-        for (let eventName in instance.listeners) {
+        for (var eventName in instance.listeners) {
           instance.el.removeEventListener(
             eventName,
             instance.listeners[eventName]
