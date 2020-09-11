@@ -23,6 +23,7 @@
     loop: false,
     startOnFocus: true,
     shuffle: false,
+    del: false,
     showCursor: true,
     cursor: '|',
     autoStart: false,
@@ -150,6 +151,35 @@
       self.timeouts.push(timeout);
     }
   };
+  
+  PlaceHolder.prototype.delString = function (str, callback) {
+    var self = this,
+        timeout;
+
+    if (!str) {
+        return false;
+    }
+    function setTimeoutCallback(index) {
+        // Add cursor `|` after current substring unless we are showing last
+        // character of the string.
+        self.el.setAttribute(
+            'placeholder',
+            str.substr(0, index) +
+            (index === str.length - 1 || !self.options.showCursor
+                ? ''
+                : self.options.cursor)
+        );
+        // Call the completion callback when last character is being printed
+        if (index === 0) {
+           callback();
+        }
+    }
+
+    for (var i = 0; i < str.length; i++) {
+        timeout = setTimeout(setTimeoutCallback, i * self.options.letterDelay, str.length - 1 - i);
+        self.timeouts.push(timeout);
+    }
+  };
 
   PlaceHolder.prototype.processText = function(index) {
     var self = this,
@@ -157,19 +187,31 @@
 
     this.isPlaying = true;
 
-    self.typeString(self.texts[index], function() {
+    self.typeString(self.texts[index], function () {
       // Empty the timeouts array
       self.timeouts.length = 0;
       if (!self.options.loop && !self.texts[index + 1]) {
-        self.isPlaying = false;
+          self.isPlaying = false;
       }
-      timeout = setTimeout(function() {
-        self.processText(
-          self.options.loop ? (index + 1) % self.texts.length : index + 1
-        );
-      }, self.options.sentenceDelay);
-      self.timeouts.push(timeout);
-    });
+      timeout = setTimeout(function () {
+          function nextText() {
+              self.timeouts.length = 0;
+              if (!self.options.loop && !self.texts[index + 1]) {
+                  self.isPlaying = false;
+              }
+              timeout = setTimeout(function () {
+                  self.processText(
+                      self.options.loop ? (index + 1) % self.texts.length : index + 1
+                  );
+              }, self.options.sentenceDelay);
+              self.timeouts.push(timeout);
+           }
+
+           if (self.options.del) self.delString(self.texts[index], nextText);
+           else nextText();
+       }, self.options.sentenceDelay);
+       self.timeouts.push(timeout);
+     });
   };
 
   var superplaceholder = function(params) {
